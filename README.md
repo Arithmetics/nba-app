@@ -1,24 +1,6 @@
-# README
+# NBA Over / Under
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Website to be hosted on Heroku for a game I am setting up with some friends
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Will put technical details up here as I know them, but so far just going to run
+through the Ruby on Rails Tutorial (Hartl) again, but do my app instead. 
