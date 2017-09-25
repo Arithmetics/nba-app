@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'users/new'
+
   #sets the root page of the application to go to the static_pages controller and do the home action
   root 'static_pages#home'
-  #maps request for URL /static_pages/home to the home action in the controller
-  get 'static_pages/home'
-  #same thing for other pages
-  get 'static_pages/help'
-  get 'static_pages/about'
+
+  #format: action(get) the url_path('/signup'), to: the controller(users) # and the action in the controller(new)
+  get '/help', to: 'static_pages#help'
+  get '/about', to: 'static_pages#about'
+  get '/signup', to: 'users#new'
+
 
 
 
