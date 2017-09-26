@@ -9,14 +9,18 @@ class UsersController < ApplicationController
   #this is the controller for the GET request to a users page
   def show
     #the params[:id] is served by the url request
-    @user = User.find(user_params)
+    @user = User.find(params[:id])
   end
 
   #uses what is POSTed from a user creation form
   def create
-    @user = User.new(params[:user])
+    #this used to use params[:user] as the variable, but uses the more secure method
+    #defined below in the private section (user_params)
+    @user = User.new(user_params)
     if @user.save
-      #do a dave
+      flash[:success] = "Welcome to the NBA Over / Under Contest!"
+      #this is the rails automagick way of sending to user_url(@user)
+      redirect_to @user
     else
       render 'new'
     end
