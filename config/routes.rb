@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
 
 
+  #this adds ALL of the actions (index, show, new, create, etc. ) and
+  #some named routes for user URLs. (in terms of a routes, still need the action
+  #in the controller
+  resources :users
+
 
 
 end

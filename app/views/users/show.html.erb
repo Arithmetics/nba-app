@@ -1,0 +1,9 @@
+<% provide(:title, @user.name) %>
+
+<div class="container">
+  <div class="user_box">
+    <%= profile_pic_for(@user) %>
+    <p class="user_info">Name: <%= @user.name %></p>
+    <p class="user_info">Email: <%= @user.email %></p>
+  </div>
+</div>
