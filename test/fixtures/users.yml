@@ -1,0 +1,5 @@
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>
+  #there is no password in the database so we have to store the password_digest

@@ -5,6 +5,11 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  def log_out
+    session.delete(:user_id)
+    @current_user = nil
+  end
+
 
   #returns current logged in user
   #takes the user id in the session(browser) and sends it to the db to find a

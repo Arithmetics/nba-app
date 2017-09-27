@@ -20,5 +20,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    #clear session hash of user id
+    log_out
+    redirect_to root_url
   end
 end

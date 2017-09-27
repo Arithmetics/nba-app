@@ -27,6 +27,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
+    #this logged_in? is from test helper (tests cant access helpers elsewhere)
+    assert is_logged_in?
   end
 
 
