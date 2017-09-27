@@ -10,11 +10,35 @@
         </li>
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Help", help_path %></li>
-        <li><%= link_to '#' do %>
-          <span class="glyphicon glyphicon-log-in"></span>
-          Log in
-          <% end %>
-        </li>
+
+        <% if logged_in? #sessions_helper %>
+          <li><%= link_to '#' do%>
+            <span class="glyphicon glyphicon-list"></span>
+            Users
+            <% end %>
+          </li>
+          <li><%= link_to '#' do%>
+            <span class="glyphicon glyphicon-user"></span>
+            Profile
+            <% end %>
+          </li>
+          <li><%= link_to '#' do%>
+            <span class="glyphicon glyphicon-cog"></span>
+            Settings
+            <% end %>
+          </li>
+          <li><%= link_to logout_path, method: :delete do%>
+            <span class="glyphicon glyphicon-log-out"></span>
+            Log Out
+            <% end %>
+          </li>
+        <% else %>
+          <li><%= link_to login_path do %>
+            <span class="glyphicon glyphicon-log-in"></span>
+            Log in
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </div>

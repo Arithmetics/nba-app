@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   #this one make sure a redirect for a bad form goes to /signup not /users (just asthetic)
   post '/signup', to: 'users#create'
 
+  #we only need these for session so we dont use the full resources tag
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
 
   #this adds ALL of the actions (index, show, new, create, etc. ) and
   #some named routes for user URLs. (in terms of a routes, still need the action
