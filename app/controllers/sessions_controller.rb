@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       #this is a method sitting in the sessions_helper it sets the session hash to the users id
       log_in(user)
+      #pulls in results from checkbox, remember and forget user are from session helper
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user #same as redirect_to user_url(user) thru rails magic
     else
       flash.now[:danger] = 'Invalid email/password combination'
@@ -21,7 +23,7 @@ class SessionsController < ApplicationController
 
   def destroy
     #clear session hash of user id
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
 end
