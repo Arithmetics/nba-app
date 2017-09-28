@@ -5,5 +5,10 @@
     <%= profile_pic_for(@user) %>
     <p class="user_info">Name: <%= @user.name %></p>
     <p class="user_info">Email: <%= @user.email %></p>
+    <p>
+      <% if current_user.admin? && !current_user?(@user) %>
+        <%= link_to "delete user permanently", @user, method: :delete, data: { confirm: "You sure?" } %>
+        <% end %>
+      </p>
   </div>
 </div>

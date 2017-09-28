@@ -8,13 +8,12 @@
           Home
           <% end %>
         </li>
-        <li><%= link_to "About", about_path %></li>
-        <li><%= link_to "Help", help_path %></li>
+        
 
         <% if logged_in? #sessions_helper %>
-          <li><%= link_to '#' do%>
+          <li><%= link_to users_path do%>
             <span class="glyphicon glyphicon-list"></span>
-            Users
+            Leaderboard
             <% end %>
           </li>
 
@@ -23,7 +22,7 @@
             Profile
             <% end %>
           </li>
-          <li><%= link_to '#' do%>
+          <li><%= link_to edit_user_path(current_user) do%>
             <span class="glyphicon glyphicon-cog"></span>
             Settings
             <% end %>

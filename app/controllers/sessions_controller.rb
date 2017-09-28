@@ -14,7 +14,9 @@ class SessionsController < ApplicationController
       log_in(user)
       #pulls in results from checkbox, remember and forget user are from session helper
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user #same as redirect_to user_url(user) thru rails magic
+      #the redirect_back_or is the sessions helper saying go where they were trying to go
+      #or if they werent just go to the user profile
+      redirect_back_or user #same as redirect_to user_url(user) thru rails magic
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'

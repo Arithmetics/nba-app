@@ -14,7 +14,7 @@ module SessionsHelper
   def remember(user)
     #accesses the remember method in the user model, triggering off the creation of a token and digest in the db
     user.remember
-    #makes a cookies that lasts and is encrypted store user id and the remember_token in it
+    #makes a cookies that lasts and is encrypted stores user id and the remember_token in it
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
   end
@@ -41,12 +41,29 @@ module SessionsHelper
     end
   end
 
+  #gives a quick way to check if given user matches current user (in session or cookie) 
+  def current_user?(user)
+    user == current_user
+  end
+
 
 
   #returns true if user is logged in, false otherwise
   # sees in @current_user variable is full or not
   def logged_in?
     !current_user.nil?
+  end
+
+
+
+  #redirects to stored location (or the default)
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 
 
