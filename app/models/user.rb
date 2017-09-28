@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email # was { self.email.downcase!} when we set up initially but cleaned up a little now
   before_create :create_activation_digest
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -47,6 +47,36 @@ class User < ApplicationRecord
     BCrypt::Password.new(digest).is_password?(entered_token)
   end
 
+  #activates an account
+  def activate
+    update_attribute(:activated, true)
+    update_attribute(:activated_at, Time.zone.now)
+  end
+
+  #send activation email
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
+  #sets the password_reset_digest
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  #send password reset email
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  def password_reset_expired?
+    #It is idiomatic to prefer to omit self. when invoking methods; it is generally never needed.
+    #so this could be self.reset_sent_at
+    #if we were setting it, it would have to be self.reset_sent_at because otherwise it would
+    #think it was another local variable
+    reset_sent_at < 20.hours.ago
+  end
 
   ############################################################################
 
