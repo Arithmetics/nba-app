@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token
-  before_save { self.email.downcase!}
+  attr_accessor :remember_token, :activation_token
+  before_save :downcase_email # was { self.email.downcase!} when we set up initially but cleaned up a little now
+  before_create :create_activation_digest
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false }
@@ -37,14 +38,28 @@ class User < ApplicationRecord
 
   #this has nothing to do with the password authenticate method
   #basically says is the token entered equal to the remember_digest in the database for the user
-  def authenticated?(entered_remember_token)
+  #updated this with meta programming to accept difference types of tokens
+  def authenticated?(token_type, entered_token)
+    digest = send("#{token_type}_digest")
     #remember_digest here is actually self.remember_digest [AR Magic again]
-    return false if remember_digest.nil?
+    return false if digest.nil?
     #same here
-    BCrypt::Password.new(remember_digest).is_password?(entered_remember_token)
+    BCrypt::Password.new(digest).is_password?(entered_token)
   end
 
 
+  ############################################################################
 
+  private
+
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  #creates and assigns the activation_token and digest
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 
 end

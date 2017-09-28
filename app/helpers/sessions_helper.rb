@@ -34,14 +34,14 @@ module SessionsHelper
       @current_user ||= User.find_by(id: session[:user_id])
     elsif cookies.signed[:user_id] #if cookies have a user_id
       user = User.find_by(id: cookies.signed[:user_id]) #find by that user id
-      if user && user.authenticated?(cookies[:remember_token]) #checks database to match remember_token and its digest
+      if user && user.authenticated?(:remember, cookies[:remember_token]) #checks database to match remember_token and its digest
          log_in user #creates the sessions
         @current_user = user
       end
     end
   end
 
-  #gives a quick way to check if given user matches current user (in session or cookie) 
+  #gives a quick way to check if given user matches current user (in session or cookie)
   def current_user?(user)
     user == current_user
   end

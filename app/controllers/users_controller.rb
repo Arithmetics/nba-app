@@ -24,10 +24,9 @@ class UsersController < ApplicationController
     #defined below in the private section (user_params)
     @user = User.new(user_params)
     if @user.save
-      log_in @user #sets session id with session helper method
-      flash[:success] = "Welcome to the NBA Over / Under Contest!"
-      #this is the rails automagick way of sending to user_url(@user)
-      redirect_to @user
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end
@@ -56,7 +55,7 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_url
-  end 
+  end
 
 
   ##################################################################

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   #some named routes for user URLs. (in terms of a routes, still need the action
   #in the controller
   resources :users
+  resources :account_activations, only: [:edit]
 
 
 
