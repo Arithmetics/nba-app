@@ -1,0 +1,9 @@
+<tr>
+  <td> <%= bet.title %> </td>
+  <td> <%= bet.benchmark %> </td>
+  <% if bet.locked? %>
+    <td>Open</td>
+  <% else %>
+    <td class="danger">Closed</td>
+  <% end %>
+</tr>

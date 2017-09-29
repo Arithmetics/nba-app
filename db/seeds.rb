@@ -27,3 +27,22 @@ User.create!(name: "Example User",
                activated: true,
                activated_at: Time.zone.now)
 end
+
+
+Bet.create!(title: "Toronto Maple Leafs",
+            benchmark: 40.5,
+            locked: false)
+
+
+Bet.create!(title: "San Jose Sharks",
+            benchmark: 22,
+            locked: false)
+
+Bet.create!(title: "Kansas City Chiefs",
+            benchmark: 9.5,
+            locked: true)
+
+
+Bet.create!(title: "Seattle Mariners",
+            benchmark: 88,
+            locked: true)
