@@ -22,6 +22,7 @@ class BetsControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect create when not admin" do
     log_in_as(@other_user)
+    get bets_path
     assert_no_difference 'Bet.count' do
       post bets_path, params: { bet: { title: "Duders",
                                        benchmark: 44.4,
@@ -38,10 +39,31 @@ class BetsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test "should create a new" do
+  test "should create a new bet when admin logged in" do
+    log_in_as(@user)
+    get bets_path
+    assert_difference 'Bet.count', 1 do
+      post bets_path, params: { bet: { title: "Duders",
+                                       benchmark: 44.5,
+                                       locked: false } }
+      end
+      assert_redirected_to bets_path
+   end
 
-    
-  end
+   test "should deleted a bet when admin logged in" do
+     log_in_as(@user)
+     get bets_path
+     assert_difference 'Bet.count', -1 do
+       delete bet_path(@bet)
+     end
+   end
+
+   test "should update a bet when admin logged in" do
+     log_in_as(@user)
+     get bets_path
+
+   end
+
 
 
 

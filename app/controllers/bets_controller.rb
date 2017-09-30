@@ -1,5 +1,5 @@
 class BetsController < ApplicationController
-  before_action :admin_user, only: [:create, :edit, :destroy, :new]
+  before_action :admin_user, only: [:create, :edit, :destroy, :new, :update]
 
 
   def index
