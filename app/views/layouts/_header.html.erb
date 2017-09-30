@@ -8,7 +8,7 @@
           Home
           <% end %>
         </li>
-        
+
 
         <% if logged_in? #sessions_helper %>
           <li><%= link_to users_path do%>
@@ -16,6 +16,13 @@
             Leaderboard
             <% end %>
           </li>
+
+          <li><%= link_to bets_path do%>
+            <span class="glyphicon glyphicon-briefcase"></span>
+            Available Bets
+            <% end %>
+          </li>
+
 
           <li><%= link_to user_path(current_user)  do%>
             <span class="glyphicon glyphicon-user"></span>

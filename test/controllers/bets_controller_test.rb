@@ -7,6 +7,7 @@ class BetsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @other_user = users(:archer)
     @bet = bets(:celtics)
   end
 
@@ -20,19 +21,26 @@ class BetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should redirect create when not admin" do
-    assert_no difference 'Bet.count' do
+    log_in_as(@other_user)
+    assert_no_difference 'Bet.count' do
       post bets_path, params: { bet: { title: "Duders",
                                        benchmark: 44.4,
                                        locked: false } }
       end
-      assert_redirected_to bets_path
+      assert_redirected_to root_url
   end
 
   test "should redirect destroy when not admin" do
-    assert_no difference 'Bet.count' do
+    log_in_as(@other_user)
+    assert_no_difference 'Bet.count' do
       delete bet_path(@bet)
     end
-    assert_redirected_to bets_path
+    assert_redirected_to root_url
+  end
+
+  test "should create a new" do
+
+    
   end
 
 

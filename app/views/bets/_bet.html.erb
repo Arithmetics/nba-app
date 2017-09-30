@@ -1,9 +1,16 @@
 <tr>
   <td> <%= bet.title %> </td>
   <td> <%= bet.benchmark %> </td>
+
   <% if bet.locked? %>
     <td>Open</td>
   <% else %>
     <td class="danger">Closed</td>
+  <% end %>
+
+  <% if current_user && current_user.admin? %>
+    <td>
+      <%= link_to "edit", edit_bet_path(bet.id) %>, <%= link_to "delete", bet, method: :delete, data: {confirm: "Confirm" } %>
+    </td>
   <% end %>
 </tr>
