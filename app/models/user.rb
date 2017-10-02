@@ -8,6 +8,7 @@ class User < ApplicationRecord
   #this automatically associated the password_digest with the password
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  has_many :picks, dependent: :destroy
 
 
   # returns the hash digest of a given string, think this is a class method

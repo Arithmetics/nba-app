@@ -1,0 +1,17 @@
+<tr id="pick-<%= pick.id %>">
+  <td> <%= pick.title %> </td>
+  <td> <%= pick.benchmark %> </td>
+  <td> <%= pick.selection %> </td>
+
+  <% if pick.locked? %>
+    <td class="danger">Closed</td>
+  <% else %>
+    <td >Open</td>
+  <% end %>
+
+  <% if pick.super? %>
+    <td class="info">Super Bet!</td>
+  <% else %>
+    <td >Regular Bet</td>
+  <% end %>
+</tr>

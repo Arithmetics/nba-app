@@ -12,3 +12,24 @@
       </p>
   </div>
 </div>
+
+<div class="col-md-8">
+  <% if @user.picks.any? %>
+  <h3>Picks (<%= @user.picks.count %>)</h3>
+
+  <table class=" users table table-hover">
+      <thead>
+        <tr>
+          <th><%= "Title" %></th>
+          <th><%= "Benchmark" %></th>
+          <th><%= "Selection" %></th>
+          <th><%= "Locked?" %></th>
+          <th><%= "Value" %></th>
+        </tr>
+      </thead>
+      <tbody>
+          <%= render @picks %>
+      </tbody>
+    </table>
+    <% end %>
+  </div>

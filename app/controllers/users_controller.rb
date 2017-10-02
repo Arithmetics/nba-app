@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def show
     #the params[:id] is served by the url request
     @user = User.find(params[:id])
+    @picks = @user.picks
   end
 
   #uses what is POSTed from a user creation form

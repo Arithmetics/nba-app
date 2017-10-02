@@ -1,0 +1,6 @@
+class PicksController < ApplicationController
+
+
+  
+
+end

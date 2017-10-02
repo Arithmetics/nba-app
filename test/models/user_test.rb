@@ -8,6 +8,7 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
                        password: "foobar", password_confirmation: "foobar")
+    @bet = bets(:bulls)
   end
 
   test "should be valid" do
@@ -79,6 +80,20 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should reutrn false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
+  end
+
+
+  test "associated picks should be destroyed when user is gone" do
+    @user.save
+    @user.picks.create!(title: "Celtics over under",
+                              benchmark: 53.5,
+                              locked: false,
+                              super: false,
+                              bet_id: @bet.id,
+                              selection: "over")
+    assert_difference 'Pick.count', -1 do
+      @user.destroy
+    end
   end
 
 

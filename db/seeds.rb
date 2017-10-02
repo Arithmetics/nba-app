@@ -16,7 +16,7 @@ User.create!(name: "Example User",
              activated: true,
              activated_at: Time.zone.now)
 
-99.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -46,3 +46,17 @@ Bet.create!(title: "Kansas City Chiefs",
 Bet.create!(title: "Seattle Mariners",
             benchmark: 88,
             locked: true)
+
+@users = User.all
+@bets = Bet.all
+
+@users.each do |user|
+  @bets.each do |bet|
+    user.picks.create!(title: bet.title,
+                       benchmark: bet.benchmark,
+                       locked: bet.locked,
+                       super: [true, false].sample,
+                       bet_id: bet.id,
+                       selection: ["under", "over"].sample)
+  end
+end
