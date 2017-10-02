@@ -1,10 +1,10 @@
 class BetsController < ApplicationController
   before_action :admin_user, only: [:create, :edit, :destroy, :new, :update, :toggle_lock]
-
+  helper_method :sort_column, :sort_direction
 
   def index
     @bet = Bet.new
-    @bets = Bet.all
+    @bets = Bet.all.order(sort_column + " " + sort_direction)
   end
 
   def create
@@ -64,6 +64,15 @@ class BetsController < ApplicationController
 
     def bet_params
       params.require(:bet).permit(:title, :benchmark, :locked)
+    end
+
+
+    def sort_column
+      Bet.column_names.include?(params[:sort]) ? params[:sort] : "benchmark"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 
 end

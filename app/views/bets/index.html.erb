@@ -2,14 +2,15 @@
 <h1>Available Over / Unders</h1>
 
 <div class="container">
+
 <%= form_tag toggle_lock_bets_path, method: :put do %>
 <table class=" users table table-hover">
     <thead>
       <tr>
         <th></th>
-        <th>Team:</th>
-        <th>Season Win Total:</th>
-        <th>Bet Closed?</th>
+        <th><%= sortable "title", "Team" %></th>
+        <th><%= sortable "benchmark", "Season Win Total" %></th>
+        <th><%= sortable "locked", "Bet Closed?" %></th>
         <% if current_user && current_user.admin?%>
           <th>Admin Action</th>
         <% end %>
@@ -19,7 +20,7 @@
         <%= render @bets %>
     </tbody>
   </table>
-  
+
   <% if current_user && current_user.admin?%>
     <%= submit_tag "Toggle Lock Checked", class: "btn btn-success" %>
   <% end %>
