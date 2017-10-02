@@ -1,5 +1,5 @@
 class BetsController < ApplicationController
-  before_action :admin_user, only: [:create, :edit, :destroy, :new, :update]
+  before_action :admin_user, only: [:create, :edit, :destroy, :new, :update, :toggle_lock]
 
 
   def index
@@ -32,6 +32,7 @@ class BetsController < ApplicationController
     end
   end
 
+
   def destroy
     @bet = Bet.find_by(id: params[:id])
     bet_deleted = @bet.title
@@ -43,6 +44,19 @@ class BetsController < ApplicationController
   def new
     @bet= Bet.new
   end
+
+
+  def toggle_lock
+    @selected_bets = Bet.where(id: params[:bet_ids])
+    @selected_bets.each do |bet|
+      bet.toggle_lock
+    end
+    redirect_to bets_url
+  end
+
+
+
+
 ########################################################################
 
 

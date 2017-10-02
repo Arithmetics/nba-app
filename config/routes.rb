@@ -22,13 +22,19 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
 
+
+
   #this adds ALL of the actions (index, show, new, create, etc. ) and
   #some named routes for user URLs. (in terms of a routes, still need the action
   #in the controller
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :bets
+  resources :bets do
+    collection do
+      put :toggle_lock
+    end
+  end
 
 
 

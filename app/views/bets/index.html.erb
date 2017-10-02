@@ -2,9 +2,11 @@
 <h1>Available Over / Unders</h1>
 
 <div class="container">
+<%= form_tag toggle_lock_bets_path, method: :put do %>
 <table class=" users table table-hover">
     <thead>
       <tr>
+        <th></th>
         <th>Team:</th>
         <th>Season Win Total:</th>
         <th>Bet Closed?</th>
@@ -17,7 +19,18 @@
         <%= render @bets %>
     </tbody>
   </table>
+  
+  <% if current_user && current_user.admin?%>
+    <%= submit_tag "Toggle Lock Checked", class: "btn btn-success" %>
+  <% end %>
+
+  <% end %>
+
 </div>
+
+<!-- below here is the create new form -->
+
+<br>
 
 <div class="container">
   <% if current_user && current_user.admin? %>
@@ -34,6 +47,7 @@
           <%= f.label :locked? %>
           <%= f.select :locked, [["Yes", false], ["No", true]] %>
         </div>
+        <br>
         <div class="form-group">
           <%= f.submit "Create new bet", class: "btn btn-primary" %>
         </div>

@@ -9,6 +9,7 @@ class BetsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
     @other_user = users(:archer)
     @bet = bets(:celtics)
+    @locked_bet = bets(:bulls)
   end
 
   test "should dispaly all the bets available" do
@@ -58,11 +59,7 @@ class BetsControllerTest < ActionDispatch::IntegrationTest
      end
    end
 
-   test "should update a bet when admin logged in" do
-     log_in_as(@user)
-     get bets_path
-
-   end
+   
 
 
 
