@@ -7,13 +7,19 @@
 <table class=" users table table-hover">
     <thead>
       <tr>
-        <th></th>
+
+        <% if current_user && current_user.admin?%>
+          <th></th>
+        <% end %>
+
         <th><%= sortable "title", "Team" %></th>
         <th><%= sortable "benchmark", "Season Win Total" %></th>
         <th><%= sortable "locked", "Bet Closed?" %></th>
+
         <% if current_user && current_user.admin?%>
           <th>Admin Action</th>
         <% end %>
+
       </tr>
     </thead>
     <tbody>

@@ -1,5 +1,8 @@
 <tr>
-  <td><%= check_box_tag "bet_ids[]", bet.id %></td>
+  <% if current_user && current_user.admin? %>
+    <td><%= check_box_tag "bet_ids[]", bet.id %></td>
+  <% end %>
+
   <td> <%= bet.title %> </td>
   <td> <%= bet.benchmark %> </td>
 
@@ -11,8 +14,12 @@
 
   <% if current_user && current_user.admin? %>
     <td>
-      <%= link_to "edit", edit_bet_path(bet.id) %>,
-      <%= link_to "delete", bet, method: :delete, data: {confirm: "Confirm" } %>
+      <div class="btn-group">
+        <%= link_to "edit", edit_bet_path(bet.id), class: "btn btn-default" %>
+
+      <%= link_to "delete", bet, method: :delete, class: "btn btn-default", data: {confirm: "Confirm" } %>
+
+      </div>
     </td>
   <% end %>
 </tr>

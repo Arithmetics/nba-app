@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   #this adds ALL of the actions (index, show, new, create, etc. ) and
   #some named routes for user URLs. (in terms of a routes, still need the action
   #in the controller
-  resources :users
+  resources :users do
+    resources :picks
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :bets do
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
       put :toggle_lock
     end
   end
+  resources :picks
 
 
 

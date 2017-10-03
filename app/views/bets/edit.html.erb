@@ -14,10 +14,6 @@
           <%= f.number_field :benchmark, :step => 0.5 %>
         </div>
         <div class="form-group">
-          <%= f.label :locked? %>
-          <%= f.select :locked, [["Yes", false], ["No", true]] %>
-        </div>
-        <div class="form-group">
           <%= f.submit "Update bet", class: "btn btn-primary" %>
         </div>
       <% end %>

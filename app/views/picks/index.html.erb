@@ -1,0 +1,43 @@
+<% provide(:title, 'Picks') %>
+<h1>All Picks</h1>
+
+
+<table class=" users table table-hover">
+    <thead>
+      <th>Title</th>
+      <th>Benchmark</th>
+      <th>Selection</th>
+      <th>Locked?</th>
+      <th>Value</th>
+      <th>Better</th>
+    </thead>
+
+
+    <tbody>
+      <% @picks.each do |pick| %>
+        <% if pick.locked? || (current_user && current_user.admin?) %>
+        <tr id="pick-<%= pick.id %>">
+          <td> <%= pick.title %> </td>
+          <td> <%= pick.benchmark %> </td>
+          <td> <%= pick.selection %> </td>
+          <% if pick.locked? %>
+            <td class="danger">Closed</td>
+          <% else %>
+            <td >Open</td>
+          <% end %>
+          <% if pick.super? %>
+            <td class="info">Super Bet!</td>
+          <% else %>
+            <td >Regular Bet</td>
+          <% end %>
+          <td><%= @users.find_by_id(pick.user_id).name %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+
+
+
+
+
+  </table>

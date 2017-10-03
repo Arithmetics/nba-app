@@ -6,16 +6,29 @@
     <p class="user_info">Name: <%= @user.name %></p>
     <p class="user_info">Email: <%= @user.email %></p>
     <p>
-      <% if current_user.admin? && !current_user?(@user) %>
+      <% if current_user && current_user.admin? && !current_user?(@user) %>
         <%= link_to "delete user permanently", @user, method: :delete, data: { confirm: "You sure?" } %>
         <% end %>
       </p>
   </div>
 </div>
 
+<div class="container">
+  <% if @user.picks.count < 10 %>
+    <p> Your Picks are Not Complete! </p>
+    <p> Button here: pick more bets here! </p>
+  <% elsif @user.picks.any? {|pick| !pick.locked? }%>
+    <p> Your Picks are Complete, but can still be edited! </p>
+    <p> Button here: edit your picks here! </p>
+  <% else %>
+    <p> All picks are locked! Enjoy the season </p>
+  <% end %>
+</div>
+
+
 <div class="col-md-8">
   <% if @user.picks.any? %>
-  <h3>Picks (<%= @user.picks.count %>)</h3>
+  <h3>Picks: (<%= @user.picks.count %> / 10)</h3>
 
   <table class=" users table table-hover">
       <thead>
@@ -25,6 +38,7 @@
           <th><%= "Selection" %></th>
           <th><%= "Locked?" %></th>
           <th><%= "Value" %></th>
+          <th><%= "Delete?" %></th>
         </tr>
       </thead>
       <tbody>

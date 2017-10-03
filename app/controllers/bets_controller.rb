@@ -48,8 +48,12 @@ class BetsController < ApplicationController
 
   def toggle_lock
     @selected_bets = Bet.where(id: params[:bet_ids])
+    @linked_picks = Pick.where(bet_id: params[:bet_ids])
     @selected_bets.each do |bet|
       bet.toggle_lock
+    end
+    @linked_picks.each do |pick|
+      pick.toggle_lock
     end
     redirect_to bets_url
   end
