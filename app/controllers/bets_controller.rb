@@ -4,6 +4,7 @@ class BetsController < ApplicationController
 
   def index
     @bet = Bet.new
+    @pick = Pick.new
     @bets = Bet.all.order(sort_column + " " + sort_direction)
   end
 

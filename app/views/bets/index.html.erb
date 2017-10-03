@@ -11,6 +11,7 @@
         <% if current_user && current_user.admin?%>
           <th></th>
         <% end %>
+        <th>Bet!</th>
 
         <th><%= sortable "title", "Team" %></th>
         <th><%= sortable "benchmark", "Season Win Total" %></th>
@@ -52,7 +53,7 @@
         </div>
         <div class="form-group">
           <%= f.label :locked? %>
-          <%= f.select :locked, [["Yes", false], ["No", true]] %>
+          <%= f.select :locked, [["Yes", true], ["No", false]] %>
         </div>
         <br>
         <div class="form-group">

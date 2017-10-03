@@ -8,7 +8,14 @@ before_action :correct_user, only: :destroy
   end
 
   def create
-
+    @pick = current_user.picks.build(pick_params)
+    if @pick.save
+      flash[:success] = "Pick saved!"
+      redirect_to bets_url
+    else
+      flash[:danger] = "Pick not saved, something happened"
+      redirect_to bets_url
+    end
   end
 
   def destroy
