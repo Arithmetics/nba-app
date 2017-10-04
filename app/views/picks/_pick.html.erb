@@ -1,4 +1,4 @@
-<% if pick.locked? || current_user?(pick.user) || current_user.admin?%>
+<% if pick.locked? || current_user?(pick.user) || (current_user && current_user.admin?)%>
 <tr id="pick-<%= pick.id %>">
   <td> <%= pick.title %> </td>
   <td> <%= pick.benchmark %> </td>

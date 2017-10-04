@@ -29,6 +29,7 @@
 <div class="col-md-8">
   <% if @user.picks.any? %>
   <h3>Picks: (<%= @user.picks.count %> / 10)</h3>
+  <h3>Super Picks: (<%= @user.picks.where(super: true).count %> / 5)</h3>
 
   <table class=" users table table-hover">
       <thead>
