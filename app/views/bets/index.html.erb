@@ -4,7 +4,9 @@
 <% if current_user && current_user.admin?%>
   <div class="container">
     <%= form_tag toggle_lock_bets_path, method: :put do %>
-      <table class=" users table table-hover">
+
+    <div class="table-responsive">
+      <table class=" table table-hover">
         <thead>
           <tr>
             <% if current_user && current_user.admin?%>
@@ -26,9 +28,13 @@
       <%= submit_tag "Toggle Lock Checked", class: "btn btn-success" %>
     <% end %>
   </div>
+</div>
+
 <% else %>
+
 <div class="container">
-  <table class=" users table table-hover">
+  <div class="table-responsive">
+    <table class=" table table-hover">
     <thead>
       <tr>
         <% if current_user && current_user.admin?%>
@@ -42,20 +48,25 @@
           <th>Admin Action</th>
         <% end %>
       </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
       <%= render @bets %>
-  </tbody>
-</table>
+    </tbody>
+    </table>
+  </div>
 </div>
+
 <% end %>
 
 <!-- below here is the create new form -->
 
 <br>
 
+
+
 <div class="container">
   <% if current_user && current_user.admin? %>
+    <h3>Create New Bet</h3>
       <%= form_for(@bet, :html => {:class => 'form-inline'} ) do |f|%>
         <div class="form-group">
           <%= f.label :title %>
@@ -79,12 +90,21 @@
 
 <!-- below here is just a copy of the user picks section -->
 
-<div class="col-md-8">
-  <% if @user.picks.any? %>
-  <h3>Picks: (<%= @user.picks.count %> / 10)</h3>
-  <h3>Super Picks: (<%= @user.picks.where(super: true).count %> / 5)</h3>
+<div class="container">
+  <h3><%=@user.name%>'s Picks:</h3>
+  <div class="row">
+    <div class="col-xs-6">
+    <% if @user.picks.any? %>
+    <div class="well"><strong>Picks:</strong><br> (<%= @user.picks.count %> / 10)</div>
+      </div>
+    <div class="col-xs-6">
+    <div class="well"><strong>Super Picks:</strong><br>(<%= @user.picks.where(super: true).count %> / 5)</div>
+  </div>
+  </div>
+</div>
 
-  <table class=" users table table-hover">
+  <div class="table-responsive">
+    <table class=" table table-hover">
       <thead>
         <tr>
           <th><%= "Title" %></th>
@@ -129,5 +149,5 @@
           <%end %>
       </tbody>
     </table>
-    <% end %>
   </div>
+    <% end %>
