@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #format: action(get) the url_path('/signup'), to: the controller(users) # and the action in the controller(new)
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
+  get '/graphs', to: 'static_pages#graphs'
   get '/signup', to: 'users#new'
   #this one make sure a redirect for a bad form goes to /signup not /users (just asthetic)
   post '/signup', to: 'users#create'

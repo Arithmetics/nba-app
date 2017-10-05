@@ -15,6 +15,7 @@ User.create!(name: "Brock Tillotson",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
+           
 
 10.times do |n|
   name = Faker::Name.name
@@ -26,9 +27,9 @@ User.create!(name: "Brock Tillotson",
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
-endBet.create!(title: "Seattle Mariners",
-            benchmark: 88,
-            locked: true)
+end
+
+
 Bet.create!(title: "Atlanta Hawks",
             benchmark: 25.5,
             locked: false)

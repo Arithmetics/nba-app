@@ -10,8 +10,12 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def graphs
+    @picks = Pick.all 
+  end
 
 
 
-  
+
+
 end
