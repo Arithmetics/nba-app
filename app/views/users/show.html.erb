@@ -3,24 +3,35 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading"><%= @user.name %></div>
+  <div class="panel-heading"><h2><%= @user.name %></h2></div>
   <div class="panel-body">
-    <p>...</p>
+
+
+    <div class="container">
+      <% if @user.picks.count < 10 && @user.picks.where(super: true).count < 5 %>
+        <p> You have less than 10 Total Picks and less than 5 Super Picks! </p>
+        <br>
+        <%= button_to "Pick More Bets Here!", bets_path, :class => "btn btn-success btn-lg btn-block", :method => :get %>
+        <br>
+      <% elsif @user.picks.count < 10 %>
+        <p> You don't have enough Total Picks! </p>
+        <br>
+        <%= button_to "Pick More Bets Here!", bets_path, :class => "btn btn-success btn-lg btn-block", :method => :get %>
+        <br>
+      <% elsif @user.picks.where(super: true).count < 5 %>
+        <p> You don't have enough Super Picks! </p>
+        <p> Delete Regular Picks below and then..</p>
+      <% else %>
+        <p> Looks like youre good to go </p>
+      <% end %>
+    </div>
   </div>
 </div>
 
 
-<div class="container">
-  <% if @user.picks.count < 10 %>
-    <p> Your Picks are Not Complete! </p>
-    <p> Button here: pick more bets here! </p>
-  <% elsif @user.picks.any? {|pick| !pick.locked? }%>
-    <p> Your Picks are Complete, but can still be edited! </p>
-    <p> Button here: edit your picks here! </p>
-  <% else %>
-    <p> All picks are locked! Enjoy the season </p>
-  <% end %>
-</div>
+
+
+
 
 <div class="container">
   <div class="row">
@@ -52,4 +63,4 @@
       </tbody>
     </table>
   </div>
-    <% end %>
+<% end %>

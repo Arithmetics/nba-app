@@ -74,11 +74,11 @@ class BetsController < ApplicationController
 
 
     def sort_column
-      Bet.column_names.include?(params[:sort]) ? params[:sort] : "benchmark"
+      Bet.column_names.include?(params[:sort]) ? params[:sort] : "locked"
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
 end

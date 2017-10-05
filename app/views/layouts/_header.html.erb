@@ -22,6 +22,20 @@
 
 
         <% if logged_in? #sessions_helper %>
+
+        <li><%= link_to user_path(current_user)  do%>
+          <span class="glyphicon glyphicon-user"></span>
+          Your Profile
+          <% end %>
+        </li>
+
+        <li><%= link_to bets_path do%>
+          <span class="glyphicon glyphicon-briefcase"></span>
+          Available Bets
+          <% end %>
+        </li>
+
+
           <li><%= link_to users_path do%>
             <span class="glyphicon glyphicon-list"></span>
             Leaderboard
@@ -30,22 +44,15 @@
 
           <li><%= link_to picks_path do%>
             <span class="glyphicon glyphicon-eye-open"></span>
-            Picks
-            <% end %>
-          </li>
-
-          <li><%= link_to bets_path do%>
-            <span class="glyphicon glyphicon-briefcase"></span>
-            Available Bets
+            Public Picks
             <% end %>
           </li>
 
 
-          <li><%= link_to user_path(current_user)  do%>
-            <span class="glyphicon glyphicon-user"></span>
-            Profile
-            <% end %>
-          </li>
+
+
+
+
           <li><%= link_to edit_user_path(current_user) do%>
             <span class="glyphicon glyphicon-cog"></span>
             Settings

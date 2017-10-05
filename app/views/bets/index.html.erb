@@ -14,8 +14,8 @@
             <% end %>
             <th>Bet!</th>
             <th><%= sortable "title", "Team" %></th>
-            <th><%= sortable "benchmark", "Season Win Total" %></th>
-            <th><%= sortable "locked", "Bet Closed?" %></th>
+            <th><%= sortable "benchmark", "Win Total" %></th>
+            <th><%= sortable "locked", "Closed?" %></th>
             <% if current_user && current_user.admin?%>
               <th>Admin Action</th>
             <% end %>
@@ -42,8 +42,8 @@
         <% end %>
         <th>Bet!</th>
         <th><%= sortable "title", "Team" %></th>
-        <th><%= sortable "benchmark", "Season Win Total" %></th>
-        <th><%= sortable "locked", "Bet Closed?" %></th>
+        <th><%= sortable "benchmark", "Win Total" %></th>
+        <th><%= sortable "locked", "Closed?" %></th>
         <% if current_user && current_user.admin?%>
           <th>Admin Action</th>
         <% end %>

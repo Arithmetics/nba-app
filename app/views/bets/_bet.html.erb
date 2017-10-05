@@ -37,7 +37,7 @@
   <td colspan="6">
   <div id="<%=bet.id%>" class="collapse">
 
-    <%= form_for(@pick, :html => {:class => 'form-inline'} ) do |f|%>
+    <%= form_for(@pick, :html => {:class => 'form-group'} ) do |f|%>
 
       <%= f.hidden_field :title, :value => bet.title %>
       <%= f.hidden_field :benchmark, :value => bet.benchmark %>
@@ -47,15 +47,16 @@
 
       <div class="form-group">
         <%= f.label :selection %>
-        <%= f.select :selection, [["Under", "under"], ["Over", "over"]] %>
+        <%= f.select(:selection, options_for_select([["Under", "under"], ["Over", "over"]]), {}, {class: "form-control maxim"}) %>
+
       </div>
       <div class="form-group">
         <%= f.label :super? %>
-        <%= f.select :super, [["No", false], ["Yes", true]] %>
+        <%= f.select(:super, options_for_select([["No", false], ["Yes", true]]), {}, {class: "form-control maxim"}) %>
       </div>
       <br>
       <div class="form-group">
-        <%= f.submit "Commit Pick", class: "btn btn-primary" %>
+        <%= f.submit "Commit Pick", class: "btn btn-primary medbutt" %>
       </div>
     <% end %>
 

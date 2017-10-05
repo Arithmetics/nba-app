@@ -8,6 +8,10 @@ body {
   padding-top: 60px;
 }
 
+.glyphicon {
+  color: white;
+}
+
 
 
 section {
@@ -155,6 +159,14 @@ footer .glyphicon {
 
   input {
     height: auto !important;
+  }
+
+  .maxim {
+    width: 300px;
+  }
+
+  .medbutt {
+    width: 300px;
   }
 
   #remember_me {
