@@ -26,9 +26,9 @@ User.create!(name: "Brock Tillotson",
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
-end
-
-
+endBet.create!(title: "Seattle Mariners",
+            benchmark: 88,
+            locked: true)
 Bet.create!(title: "Atlanta Hawks",
             benchmark: 25.5,
             locked: false)
@@ -39,7 +39,7 @@ Bet.create!(title: "Boston Celtics",
             locked: false)
 
 Bet.create!(title: "Brooklyn Nets",
-            benchmark: 27.7,
+            benchmark: 27.5,
             locked: true)
 
 Bet.create!(title: "Charlotte Hornets",
@@ -60,9 +60,6 @@ Bet.create!(title: "Dallas Mavericks",
             benchmark: 35.5,
             locked: true)
 
-Bet.create!(title: "Seattle Mariners",
-            benchmark: 88,
-            locked: true)
 
 Bet.create!(title: "Denver Nuggets",
             benchmark: 45.5,

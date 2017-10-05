@@ -1,8 +1,8 @@
 <% if pick.locked? || current_user?(pick.user) || (current_user && current_user.admin?)%>
 <tr id="pick-<%= pick.id %>">
-  <td> <%= pick.title %> </td>
+  <td> <%= image_tag("#{pick.title}.png", :alt => "icon", :class=> "iconz") %> <%= pick.title %> </td>
   <td> <%= pick.benchmark %> </td>
-  <td> <%= pick.selection %> </td>
+  <td> <%= pick.selection.capitalize %> </td>
 
   <% if pick.locked? %>
     <td class="danger">Closed</td>

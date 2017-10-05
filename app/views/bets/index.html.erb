@@ -1,6 +1,5 @@
 <% provide(:title, 'Lines') %>
 <h1>Available Over / Unders</h1>
-<img src="/images/bucks.png" alt="team pic" />
 
 <% if current_user && current_user.admin?%>
   <div class="container">
@@ -122,7 +121,7 @@
 
 
         <tr id="pick-<%= pick.id %>">
-          <td> <%= pick.title %> </td>
+          <td><%= image_tag("#{pick.title}.png", :alt => "icon", :class=> "iconz") %>  <%= pick.title %> </td>
           <td> <%= pick.benchmark %> </td>
           <td> <%= pick.selection %> </td>
 
