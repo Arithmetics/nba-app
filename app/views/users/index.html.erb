@@ -8,6 +8,9 @@
         <th>User</th>
         <th># Picks</th>
         <th>Projected Points</th>
+        <% if current_user && current_user.admin?%>
+          <th>Delete User</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
