@@ -8,12 +8,15 @@
  <div class="table-responsive">
    <table class=" table table-hover">
     <thead>
+      <th>User</th>
       <th>Title</th>
-      <th>Wins</th>
       <th>Selection</th>
-      <th>Locked?</th>
       <th>Value</th>
-      <th>Better</th>
+
+      <th>Wins</th>
+      <th>Locked?</th>
+
+
     </thead>
 
 
@@ -21,20 +24,23 @@
       <% @picks.each do |pick| %>
         <% if pick.locked? || (current_user && current_user.admin?) %>
         <tr id="pick-<%= pick.id %>">
+          <td><%= @users.find_by_id(pick.user_id).name %></td>
           <td> <%= pick.title %> </td>
-          <td> <%= pick.benchmark %> </td>
           <td> <%= pick.selection %> </td>
-          <% if pick.locked? %>
-            <td class="danger">Closed</td>
-          <% else %>
-            <td >Open</td>
-          <% end %>
+
           <% if pick.super? %>
             <td class="info">Super Bet!</td>
           <% else %>
             <td >Regular Bet</td>
           <% end %>
-          <td><%= @users.find_by_id(pick.user_id).name %></td>
+          <td> <%= pick.benchmark %> </td>
+          <% if pick.locked? %>
+            <td class="danger">Closed</td>
+          <% else %>
+            <td >Open</td>
+          <% end %>
+
+
         </tr>
         <% end %>
       <% end %>

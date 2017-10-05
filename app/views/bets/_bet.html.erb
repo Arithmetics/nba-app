@@ -10,7 +10,7 @@
       </a>
     <% end %>
   </td>
-  <td> <%= bet.title %> </td>
+  <td> <%= image_tag("#{bet.title}.png", :alt => "icon", :class=> "iconz") %> <%= bet.title %> </td>
   <td> <%= bet.benchmark %> </td>
 
   <% if bet.locked? %>

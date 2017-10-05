@@ -17,5 +17,9 @@ module ApplicationHelper
     link_to title, :sort => column, :direction => direction
   end
 
+  def team_pic_url(bet_title)
+    "/images/#{bet_title}.png"
+  end
+
 
 end
