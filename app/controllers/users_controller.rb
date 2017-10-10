@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   #make sure user is admin before allowing destroy
   before_action :admin_user, only: [:destroy]
+  helper_method :sort_column, :sort_direction
 
   #this is the users/new page controller the @user variable is passed to the view
   #the User is created using the User class defined in the model
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
   def show
     #the params[:id] is served by the url request
     @user = User.find(params[:id])
-    @picks = @user.picks
+    @picks = @user.picks.reorder(sort_column + " " + sort_direction)
   end
 
   #uses what is POSTed from a user creation form
@@ -49,8 +50,7 @@ class UsersController < ApplicationController
   end
 
   def index
-
-    @users = User.all
+    @users = User.sorted_by_projected_points
   end
 
   def destroy
@@ -68,6 +68,15 @@ class UsersController < ApplicationController
     #this method is to protect params[:user] from being hijacked by a malicious user hash
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+
+    def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "selection"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
 

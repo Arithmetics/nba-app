@@ -15,7 +15,7 @@ User.create!(name: "Brock Tillotson",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
-           
+
 
 10.times do |n|
   name = Faker::Name.name
@@ -194,3 +194,34 @@ bet_ids = (1..30).to_a
   end
 
 end
+
+Standing.create!(team_name: "Atlanta Hawks",
+                 games_played: 0,
+                 wins: 0,
+                 losses: 0,
+                 win_loss_pct: 1.000)
+
+Standing.create!(team_name: "Atlanta Hawks",
+                 games_played: 1,
+                 wins: 1,
+                 losses: 0,
+                 win_loss_pct: 1.000)
+
+                 
+Standing.create!(team_name: "Atlanta Hawks",
+                 games_played: 2,
+                 wins: 1,
+                 losses: 1,
+                 win_loss_pct: 0.500)
+
+Standing.create!(team_name: "Atlanta Hawks",
+                 games_played: 3,
+                 wins: 1,
+                 losses: 2,
+                 win_loss_pct: 0.333)
+
+Standing.create!(team_name: "Atlanta Hawks",
+                 games_played: 4,
+                 wins: 1,
+                 losses: 3,
+                 win_loss_pct: 0.250)

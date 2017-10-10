@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'standings/index'
+
+  get 'standings/show'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'

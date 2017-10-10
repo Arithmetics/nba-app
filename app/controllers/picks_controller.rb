@@ -1,6 +1,7 @@
 class PicksController < ApplicationController
 before_action :logged_in_user, only: [:create, :destroy]
 before_action :correct_user, only: :destroy
+helper_method :sort_column, :sort_direction
 
   def new
     @bets = Bet.all
@@ -41,7 +42,7 @@ before_action :correct_user, only: :destroy
   end
 
   def index
-    @picks = Pick.all
+    @picks = Pick.order(sort_column + " " + sort_direction)
     @users = User.all
   end
 
@@ -62,6 +63,15 @@ before_action :correct_user, only: :destroy
     def correct_user
       @pick = current_user.picks.find_by(id: params[:id])
       redirect_to root_url if @pick.nil?
+    end
+
+
+    def sort_column
+      Pick.column_names.include?(params[:sort]) ? params[:sort] : "user_id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
 

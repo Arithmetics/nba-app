@@ -79,6 +79,15 @@ class User < ApplicationRecord
     reset_sent_at < 20.hours.ago
   end
 
+  def projected_points
+    #unfinished set at the ord value of the first name of the user for now
+    self.name[1].ord
+  end
+
+  def self.sorted_by_projected_points
+    User.all.sort_by(&:projected_points).reverse!
+  end
+
   ############################################################################
 
   private

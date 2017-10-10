@@ -13,8 +13,6 @@ gem 'bcrypt',         '3.1.11'
 gem 'faker',          '1.7.3'
 gem 'chartkick', '~> 1.2.4'
 gem 'active_median', '~> 0.1.0'
-gem 'nokogiri'
-gem 'open-uri'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
