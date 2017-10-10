@@ -1,2 +1,54 @@
-<h1>Standings#index</h1>
-<p>Find me in app/views/standings/index.html.erb</p>
+
+<div class="table-responsive">
+  <table class=" table table-hover">
+  <tr>
+    <th>Team Name</th>
+    <th>Games Played</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Win %</th>
+    <th>Created At</th>
+  </tr>
+  <% @standings.each do |standing| %>
+  <tr>
+    <td><%= standing.team_name %></td>
+    <td><%= standing.games_played %></td>
+    <td><%= standing.wins %></td>
+    <td><%= standing.losses %></td>
+    <td><%= standing.win_loss_pct %></td>
+    <td><%= standing.created_at %></td>
+  </tr>
+  <% end %>
+</table>
+</div>
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3> Atlanta Hawks </h3>
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation">Win Target <span class="badge">45</span></li>
+            <li role="presentation">Profile</li>
+            <li role="presentation">Messages <span class="badge">3</span></li>
+          </ul>
+        </div>
+          <div class="panel-body">
+            <%= line_chart @atlanta.group(:games_played).sum(:win_loss_pct), discrete: true, min: 0, max: 1, curve: false %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="well">
+        <h3> Boston Celtics </h3>
+        <%= line_chart @boston.group(:games_played).sum(:win_loss_pct), discrete: true, min: 0, max: 1, curve: false %>
+      </div>
+    </div>
+  </div>
+</div>

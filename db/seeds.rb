@@ -207,7 +207,7 @@ Standing.create!(team_name: "Atlanta Hawks",
                  losses: 0,
                  win_loss_pct: 1.000)
 
-                 
+
 Standing.create!(team_name: "Atlanta Hawks",
                  games_played: 2,
                  wins: 1,
@@ -225,3 +225,99 @@ Standing.create!(team_name: "Atlanta Hawks",
                  wins: 1,
                  losses: 3,
                  win_loss_pct: 0.250)
+
+ Standing.create!(team_name: "Atlanta Hawks",
+                  games_played: 5,
+                  wins: 2,
+                  losses: 3,
+                  win_loss_pct: 0.400)
+
+ Standing.create!(team_name: "Atlanta Hawks",
+                  games_played: 6,
+                  wins: 2,
+                  losses: 4,
+                  win_loss_pct: 0.333)
+
+
+ Standing.create!(team_name: "Atlanta Hawks",
+                  games_played: 7,
+                  wins: 2,
+                  losses: 5,
+                  win_loss_pct: 0.286)
+
+ Standing.create!(team_name: "Atlanta Hawks",
+                  games_played: 8,
+                  wins: 2,
+                  losses: 6,
+                  win_loss_pct: 0.250)
+
+ Standing.create!(team_name: "Atlanta Hawks",
+                  games_played: 9,
+                  wins: 2,
+                  losses: 7,
+                  win_loss_pct: 0.222)
+
+
+
+
+Standing.create!(team_name: "Boston Celtics",
+                 games_played: 0,
+                 wins: 0,
+                 losses: 0,
+                 win_loss_pct: 1.000)
+
+Standing.create!(team_name: "Boston Celtics",
+                 games_played: 1,
+                 wins: 1,
+                 losses: 0,
+                 win_loss_pct: 1.000)
+
+
+Standing.create!(team_name: "Boston Celtics",
+                 games_played: 2,
+                 wins: 2,
+                 losses: 0,
+                 win_loss_pct: 1.000)
+
+Standing.create!(team_name: "Boston Celtics",
+                 games_played: 3,
+                 wins: 2,
+                 losses: 1,
+                 win_loss_pct: 0.666)
+
+Standing.create!(team_name: "Boston Celtics",
+                 games_played: 4,
+                 wins: 2,
+                 losses: 2,
+                 win_loss_pct: 0.500)
+
+ Standing.create!(team_name: "Boston Celtics",
+                  games_played: 5,
+                  wins: 3,
+                  losses: 2,
+                  win_loss_pct: 0.600)
+
+ Standing.create!(team_name: "Boston Celtics",
+                  games_played: 6,
+                  wins: 4,
+                  losses: 2,
+                  win_loss_pct: 0.666)
+
+
+ Standing.create!(team_name: "Boston Celtics",
+                  games_played: 7,
+                  wins: 4,
+                  losses: 3,
+                  win_loss_pct: 0.571)
+
+ Standing.create!(team_name: "Boston Celtics",
+                  games_played: 8,
+                  wins: 5,
+                  losses: 3,
+                  win_loss_pct: 0.625)
+
+ Standing.create!(team_name: "Boston Celtics",
+                  games_played: 9,
+                  wins: 6,
+                  losses: 3,
+                  win_loss_pct: 0.666)                   
