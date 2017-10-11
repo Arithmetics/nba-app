@@ -30,6 +30,10 @@ User.create!(name: "Brock Tillotson",
 end
 
 
+
+
+
+
 Bet.create!(title: "Atlanta Hawks",
             benchmark: 25.5,
             locked: false)
@@ -195,129 +199,77 @@ bet_ids = (1..30).to_a
 
 end
 
-Standing.create!(team_name: "Atlanta Hawks",
-                 games_played: 0,
-                 wins: 0,
-                 losses: 0,
-                 win_loss_pct: 1.000)
 
-Standing.create!(team_name: "Atlanta Hawks",
-                 games_played: 1,
-                 wins: 1,
-                 losses: 0,
-                 win_loss_pct: 1.000)
+team_names = [
+  "Atlanta Hawks",
+  "Boston Celtics",
+  "Brooklyn Nets",
+  "Charlotte Hornets",
+  "Chicago Bulls",
+  "Cleveland Cavaliers",
+  "Dallas Mavericks",
+  "Denver Nuggets",
+  "Detroit Pistons",
+  "Golden State Warriors",
+  "Houston Rockets",
+  "Indiana Pacers",
+  "Los Angeles Clippers",
+  "Los Angeles Lakers",
+  "Memphis Grizzlies",
+  "Miami Heat",
+  "Milwaukee Bucks",
+  "Minnesota Timberwolves",
+  "New Orleans Pelicans",
+  "New York Knicks",
+  "Oklahoma City Thunder",
+  "Orlando Magic",
+  "Philadelphia 76ers",
+  "Phoenix Suns",
+  "Portland Trail Blazers",
+  "Sacramento Kings",
+  "San Antonio Spurs",
+  "Toronto Raptors",
+  "Utah Jazz",
+  "Washington Wizards"
+]
 
-
-Standing.create!(team_name: "Atlanta Hawks",
-                 games_played: 2,
-                 wins: 1,
-                 losses: 1,
-                 win_loss_pct: 0.500)
-
-Standing.create!(team_name: "Atlanta Hawks",
-                 games_played: 3,
-                 wins: 1,
-                 losses: 2,
-                 win_loss_pct: 0.333)
-
-Standing.create!(team_name: "Atlanta Hawks",
-                 games_played: 4,
-                 wins: 1,
-                 losses: 3,
-                 win_loss_pct: 0.250)
-
- Standing.create!(team_name: "Atlanta Hawks",
-                  games_played: 5,
-                  wins: 2,
-                  losses: 3,
-                  win_loss_pct: 0.400)
-
- Standing.create!(team_name: "Atlanta Hawks",
-                  games_played: 6,
-                  wins: 2,
-                  losses: 4,
-                  win_loss_pct: 0.333)
-
-
- Standing.create!(team_name: "Atlanta Hawks",
-                  games_played: 7,
-                  wins: 2,
-                  losses: 5,
-                  win_loss_pct: 0.286)
-
- Standing.create!(team_name: "Atlanta Hawks",
-                  games_played: 8,
-                  wins: 2,
-                  losses: 6,
-                  win_loss_pct: 0.250)
-
- Standing.create!(team_name: "Atlanta Hawks",
-                  games_played: 9,
-                  wins: 2,
-                  losses: 7,
-                  win_loss_pct: 0.222)
+team_names.each do |team|
+  10.times do |n|
+    games_played = n
+    if n == 0
+      wins = 0
+      losses = 0
+    else
+      last_wins = Standing.last.wins
+      last_losses = Standing.last.losses
+      winz = [true, false].sample
+      if winz
+        wins = last_wins + 1
+        losses = last_losses
+      else
+        wins = last_wins
+        losses = last_losses + 1
+      end
+      win_loss_pct = wins.to_f / games_played.to_f
+    end
 
 
+    Standing.create!(
+                     team_name: team,
+                     games_played: games_played,
+                     wins: wins,
+                     losses: losses,
+                     win_loss_pct: win_loss_pct
+                     )
+
+    Standing.create!(
+                     team_name: "#{team} Goal",
+                     games_played: games_played,
+                     wins: wins,
+                     losses: losses,
+                     win_loss_pct: (@bets.find_by_title(team).benchmark.to_f / 82)
+                     )
 
 
-Standing.create!(team_name: "Boston Celtics",
-                 games_played: 0,
-                 wins: 0,
-                 losses: 0,
-                 win_loss_pct: 1.000)
-
-Standing.create!(team_name: "Boston Celtics",
-                 games_played: 1,
-                 wins: 1,
-                 losses: 0,
-                 win_loss_pct: 1.000)
-
-
-Standing.create!(team_name: "Boston Celtics",
-                 games_played: 2,
-                 wins: 2,
-                 losses: 0,
-                 win_loss_pct: 1.000)
-
-Standing.create!(team_name: "Boston Celtics",
-                 games_played: 3,
-                 wins: 2,
-                 losses: 1,
-                 win_loss_pct: 0.666)
-
-Standing.create!(team_name: "Boston Celtics",
-                 games_played: 4,
-                 wins: 2,
-                 losses: 2,
-                 win_loss_pct: 0.500)
-
- Standing.create!(team_name: "Boston Celtics",
-                  games_played: 5,
-                  wins: 3,
-                  losses: 2,
-                  win_loss_pct: 0.600)
-
- Standing.create!(team_name: "Boston Celtics",
-                  games_played: 6,
-                  wins: 4,
-                  losses: 2,
-                  win_loss_pct: 0.666)
-
-
- Standing.create!(team_name: "Boston Celtics",
-                  games_played: 7,
-                  wins: 4,
-                  losses: 3,
-                  win_loss_pct: 0.571)
-
- Standing.create!(team_name: "Boston Celtics",
-                  games_played: 8,
-                  wins: 5,
-                  losses: 3,
-                  win_loss_pct: 0.625)
-
- Standing.create!(team_name: "Boston Celtics",
-                  games_played: 9,
-                  wins: 6,
-                  losses: 3,
-                  win_loss_pct: 0.666)                   
+  end
+end
