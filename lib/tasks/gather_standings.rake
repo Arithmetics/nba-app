@@ -26,9 +26,14 @@ task :fetch_standings => :environment do
 
   ids.each do |id|
     if Standing.where(team_name: team_names[id], games_played: (wins[id]+losses[id])).empty?
+       #create standing value
        Standing.create!(
          team_name: team_names[id], games_played: (wins[id]+losses[id]),
          wins: wins[id], losses: losses[id], win_loss_pct: win_loss_pcts[id])
+         #create cooresponding graph goal point
+         Standing.create!(
+           team_name: "#{team_names[id]} Goal", games_played: (wins[id]+losses[id]),
+           wins: wins[id], losses: losses[id], win_loss_pct: win_loss_pcts[id])
     end
   end
 

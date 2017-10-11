@@ -1,15 +1,10 @@
 <div class="container">
-
   <% @teams.each do |team| %>
-
-        <div class="col-md-12">
-          <div class="panel panel-default">
-
-            <div class="panel-heading">
-
-              <div class="row">
-
-                <div class="col-md-4">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-4">
                 <% if team[0] %>
                   <h3>
                     <%= image_tag("#{team[0].first.team_name}.png", :alt => "icon", :class=> "iconx") %>
@@ -18,7 +13,7 @@
                 <% end %>
               <ul class="nav nav-pills" role="tablist">
                 <li role="presentation">
-                  Win Target:  
+                  Win Target:
                    <span class="badge">
                      <% if team[0] %>
                        <%= @bets.find_by_title(team[0].first.team_name).benchmark %>
@@ -28,19 +23,42 @@
               </ul>
             </div>
 
+            <div class="col-md-4">
+              <br>
+            </div>
+
+            <div class="col-md-4">
+              <% if !!current_user.picks.find_by_title(team[0].first.team_name) %>
+                <% if current_user.picks.find_by_title(team[0].first.team_name).projected_win? %>
+                  <div class="panel panel-success">
+                <% else %>
+                  <div class="panel panel-danger">
+                <% end %>
+                  <div class="panel-heading">
+                    <h3 class="panel-title">
+                      Selection: <%= current_user.picks.find_by_title(team[0].first.team_name).selection.capitalize %>
+                    </h3>
+                  </div>
+                  <div class="panel-body">
+                    <% if current_user.picks.find_by_title(team[0].first.team_name).super %>
+                      <%= "This is a Super Pick!" %>
+                    <% else %>
+                      <%= "This is a Regular Pick!" %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
 
           </div>
-
-          </div>
-
-              <div class="panel-body">
-                <%= line_chart [
+        </div>
+        <div class="panel-body">
+          <%= line_chart [
                   {name: "Results", data: team[0].group(:games_played).sum(:win_loss_pct)},
                   {name: "Goal", data: team[1].group(:games_played).sum(:win_loss_pct)} ], discrete: true, min: 0, max: 1%>
 
-            </div>
-          </div>
         </div>
-
+      </div>
+    </div>
   <% end %>
 </div>

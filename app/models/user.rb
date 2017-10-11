@@ -80,8 +80,25 @@ class User < ApplicationRecord
   end
 
   def projected_points
-    #unfinished set at the ord value of the first name of the user for now
-    self.name[1].ord
+    points = 0
+    self.picks.each do |pick|
+      standing_status = Standing.where(team_name: pick.title).last.win_loss_pct
+      standing_goal = Standing.where(team_name: "#{pick.title} Goal").last.win_loss_pct
+      if pick.selection == "over"
+        if standing_status > standing_goal && pick.super
+          points += 2
+        elsif standing_status > standing_goal
+          points += 1
+        end
+      elsif pick.selection == "under"
+        if standing_status < standing_goal && pick.super
+          points += 2
+        elsif standing_status < standing_goal
+          points += 1
+        end
+      end
+    end
+    points
   end
 
   def self.sorted_by_projected_points

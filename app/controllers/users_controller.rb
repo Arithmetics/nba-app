@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
 
     def sort_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : "selection"
+      Pick.column_names.include?(params[:sort]) ? params[:sort] : "selection"
     end
 
     def sort_direction
