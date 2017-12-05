@@ -13,6 +13,7 @@
       <th><%= sortable "selection"%></th>
       <th><%= sortable "super"%></th>
       <th><%= sortable "benchmark"%></th>
+      <th>Projection</th>
       <th><%= sortable "locked"%></th>
     </thead>
     <tbody>
@@ -29,6 +30,11 @@
             <td >Regular Bet</td>
           <% end %>
           <td> <%= pick.benchmark %> </td>
+          <% if pick.projected_win? %>
+            <td class="success">Winning!</td>
+          <% else %>
+            <td class="danger">Losing!</td>
+          <% end %>
           <% if pick.locked? %>
             <td class="danger">Closed</td>
           <% else %>

@@ -34,15 +34,20 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-4">
       <% if @user.picks.any? %>
       <div class="well">
         <strong>Total Picks</strong>:<br> (<%= @user.picks.count %> / 10)
       </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-4">
       <div class="well">
         <strong>Super Picks:</strong><br>(<%= @user.picks.where(super: true).count %> / 5)
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="well">
+        <strong>Projected Score:</strong><br>(<%= @user.projected_points %> / 15)
       </div>
     </div>
   </div>
@@ -58,6 +63,7 @@
             <th><%= sortable "selection", "Pick" %></th>
             <th><%= sortable "locked", "Locked?" %></th>
             <th><%= sortable "super", "Value" %></th>
+            <th>Status</th>
             <th><%= "Delete?" %></th>
           </tr>
         </thead>

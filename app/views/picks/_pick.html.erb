@@ -16,6 +16,12 @@
     <td >Regular Bet</td>
   <% end %>
 
+  <% if pick.projected_win? %>
+    <td class="success">Winning!</td>
+  <% else %>
+    <td class="danger">Losing!</td>
+  <% end %>
+
   <td>
    <% if !pick.locked? && current_user?(pick.user)%>
     <%= link_to "delete", pick, class: "btn btn-default", method: :delete, data: { confirm: "You sure?" } %>
