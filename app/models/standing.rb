@@ -40,9 +40,9 @@ class Standing < ApplicationRecord
     wins_to_get_under = under_win_goal - self.wins
     if selection == "over"
       if wins_to_get_over <= 0
-        result = "Team has locked in the over"
+        result = "Team clinched over"
       elsif wins_to_get_over > remaining_games
-        result = "Team cannot achieve the over"
+        result = "Team clinched under"
       else
         required_more_wins = over_win_goal - self.wins
         max_more_losses = 82 -required_more_wins - self.games_played
@@ -50,9 +50,9 @@ class Standing < ApplicationRecord
       end
     elsif selection == "under"
       if wins_to_get_under <= 0
-        result = "Team cannot achieve the under"
+        result = "Team clinched over"
       elsif wins_to_get_under > remaining_games
-        result = "Team has locked in the under"
+        result = "Team clinched under"
       else
         max_more_wins = over_win_goal - self.wins - 1
         required_more_losses = 82 -max_more_wins - self.games_played

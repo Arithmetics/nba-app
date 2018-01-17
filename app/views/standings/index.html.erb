@@ -25,22 +25,7 @@
             </div>
 
             <div class="col-md-4 col-sm-6">
-              <% if !!current_user.picks.find_by_title(team[0].first.team_name) %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">
-                    Test
-                  </h3>
-                </div>
-                <div class="panel-body">
-                  Wins: <%= team[0].last.wins %>
-                  <br>
-                  Losses: <%= team[0].last.losses %>
-                  <br>
-                  Required: <%= team[0].last.required_record(team[1].last.win_loss_pct, current_user.picks.find_by_title(team[0].first.team_name).selection ) %>
-                </div>
-              </div>
-              <% end %>
+              <br>
             </div>
 
             <div class="col-md-4 col-sm-6">
@@ -58,8 +43,12 @@
                   <div class="panel-body">
                     <% if current_user.picks.find_by_title(team[0].first.team_name).super %>
                       <%= "This is a Super Pick!" %>
+                      <br>
+                      Required Future Record: <%= team[0].last.required_record(team[1].last.win_loss_pct, current_user.picks.find_by_title(team[0].first.team_name).selection ) %>
                     <% else %>
                       <%= "This is a Regular Pick!" %>
+                      <br>
+                      Required Future Record: <%= team[0].last.required_record(team[1].last.win_loss_pct, current_user.picks.find_by_title(team[0].first.team_name).selection ) %>
                     <% end %>
                   </div>
                 </div>
