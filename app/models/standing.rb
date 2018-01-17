@@ -35,7 +35,7 @@ class Standing < ApplicationRecord
   def required_record(goal_pct, selection)
     remaining_games = 82-self.games_played
     over_win_goal = ((goal_pct + 0.005) * 82 + 1).floor
-    under_win_goal = (goal_pct * 82).floor
+    under_win_goal = (goal_pct * 82 + 1).floor
     wins_to_get_over = over_win_goal - self.wins
     wins_to_get_under = under_win_goal - self.wins
     if selection == "over"
