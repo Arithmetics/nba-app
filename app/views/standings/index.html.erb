@@ -4,6 +4,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
+
             <div class="col-md-4">
                 <% if team[0] %>
                   <h3>
@@ -23,11 +24,26 @@
               </ul>
             </div>
 
-            <div class="col-md-4">
-              <br>
+            <div class="col-md-4 col-sm-6">
+              <% if !!current_user.picks.find_by_title(team[0].first.team_name) %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    Test
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  Wins: <%= team[0].last.wins %>
+                  <br>
+                  Losses: <%= team[0].last.losses %>
+                  <br>
+                  Required: <%= team[0].last.required_record(team[1].last.win_loss_pct, current_user.picks.find_by_title(team[0].first.team_name).selection ) %>
+                </div>
+              </div>
+              <% end %>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-6">
               <% if !!current_user.picks.find_by_title(team[0].first.team_name) %>
                 <% if current_user.picks.find_by_title(team[0].first.team_name).projected_win? %>
                   <div class="panel panel-success">
@@ -49,9 +65,10 @@
                 </div>
               <% end %>
             </div>
-
           </div>
+
         </div>
+
         <div class="panel-body">
           <%= line_chart [
                   {name: "Results", data: team[0].group(:games_played).sum(:win_loss_pct)},
