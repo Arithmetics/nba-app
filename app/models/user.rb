@@ -4,21 +4,19 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false }
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   #this automatically associated the password_digest with the password
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   has_many :picks, dependent: :destroy
 
-
   # returns the hash digest of a given string, think this is a class method
   # all that I can see we did with this was use it to make fixtures with the correct password_digest
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+      BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
-
 
   #this will be used to make random tokens for cookies and emails that reset stuff
   def User.new_token
@@ -82,11 +80,16 @@ class User < ApplicationRecord
   def projected_points
     points = 0
     self.picks.each do |pick|
-      standing_status = Standing.where(team_name: pick.title).last.win_loss_pct
-      if standing_status == nil 
-        standing_status = 0
+      standing_title = Standing.where(team_name: pick.title).last
+      standing_status = 0
+      if standing_title != nil
+        standing_status = standing_title.win_loss_pct
       end
-      standing_goal = Standing.where(team_name: "#{pick.title} Goal").last.win_loss_pct
+      standing_goal_title = Standing.where(team_name: "#{pick.title} Goal").last
+      standing_goal = 0
+      if standing_goal_title != nil
+        standing_goal = standing_goal_title.win_loss_pct
+      end
       if pick.selection == "over"
         if standing_status > standing_goal && pick.super
           points += 2
@@ -121,5 +124,4 @@ class User < ApplicationRecord
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
-
 end
