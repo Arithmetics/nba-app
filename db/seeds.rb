@@ -234,7 +234,7 @@ team_names = [
 ]
 
 team_names.each do |team|
-  54.times do |n|
+  1.times do |n|
     games_played = n
     if n == 0
       wins = 0

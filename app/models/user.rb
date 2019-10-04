@@ -83,6 +83,9 @@ class User < ApplicationRecord
     points = 0
     self.picks.each do |pick|
       standing_status = Standing.where(team_name: pick.title).last.win_loss_pct
+      if standing_status == nil 
+        standing_status = 0
+      end
       standing_goal = Standing.where(team_name: "#{pick.title} Goal").last.win_loss_pct
       if pick.selection == "over"
         if standing_status > standing_goal && pick.super
