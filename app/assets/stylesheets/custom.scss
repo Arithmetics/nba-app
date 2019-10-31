@@ -1,7 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
 /* universal */
 
 body {
@@ -12,7 +11,38 @@ body {
   color: white;
 }
 
+.main-page-background {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-image: image-url("main-banner.jpeg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  margin-top: -10px;
+}
 
+.bottom-transparent {
+  background-color: transparent;
+}
+
+.cool-panel {
+  border-radius: 9px;
+  opacity: 0.9;
+
+  .panel-heading {
+    height: 48px !important;
+    border-radius: 9px 9px 0 0 !important;
+  }
+
+  .panel-body {
+    border-radius: 0px 0px 9px 9px !important;
+  }
+
+  h3 {
+    margin: 3px !important;
+  }
+}
 
 section {
   overflow: auto;
@@ -30,10 +60,14 @@ textarea {
   margin-bottom: 10px;
 }
 
-
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1;
 }
 
@@ -57,7 +91,6 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-
 
 /* header */
 
@@ -83,14 +116,12 @@ span {
 }
 
 .pict {
-	filter: invert(100%);
+  filter: invert(100%);
   height: 2em;
   float: left;
   margin-top: 8px;
   margin-left: 5px;
 }
-
-
 
 /* footer */
 
@@ -127,7 +158,6 @@ footer .glyphicon {
   color: black;
 }
 
-
 /* user page */
 
 .profile_pic {
@@ -140,59 +170,59 @@ footer .glyphicon {
   margin: auto;
   text-align: left;
   float: right;
-
 }
 
-
-
 .user_info {
-      text-decoration: none;
-      font-size: 22px;
-      color: black;
-      padding-left: 22px;
-  }
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+  padding-left: 22px;
+}
 
-  .maxer {
-    max-width: 100%;
-  }
+.maxer {
+  max-width: 100%;
+}
 
-  /* forms */
+/* forms */
 
-  .iconz {
-    height: 20px;
-    width: auto;
-  }
+.iconz {
+  height: 20px;
+  width: auto;
+}
 
-  .iconx {
-    height: 30px;
-    width: auto;
-  }
+.iconx {
+  height: 30px;
+  width: auto;
+}
 
-  input, textarea, select, .uneditable-input {
-    border: 1px solid #bbb;
-    width: 100%;
-    margin-bottom: 15px;
+input,
+textarea,
+select,
+.uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
 
-    -moz-box-sizing:    border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing:         border-box;
-  }
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-  input {
-    height: auto !important;
-  }
+input {
+  height: auto !important;
+}
 
-  .maxim {
-    width: 300px;
-  }
+.maxim {
+  width: 300px;
+}
 
-  .medbutt {
-    width: 300px;
-  }
+.medbutt {
+  width: 300px;
+}
 
-  #remember_me {
-    color: black;
-  }
+#remember_me {
+  color: black;
+}
 
 /* miscellaneous */
 
@@ -201,7 +231,42 @@ footer .glyphicon {
   float: left;
   width: 100%;
   margin-top: 45px;
-  -moz-box-sizing:    border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+  box-sizing: border-box;
+}
+
+.videoHolder {
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -99;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
+#home-header {
+  color: #89a;
+}
+
+.jumbotron {
+  background-color: transparent;
+  margin: 100px auto;
+  max-width: 550px;
+  padding: 0;
+  min-height: 45%;
+}
+
+#remember_me {
+  color: #fff;
+}
+
+.transparent {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.button-lower {
+  position: relative;
+  top: 110px;
 }
