@@ -209,7 +209,7 @@ DEPENDENCIES
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.7)
   byebug (= 9.0.6)
-  chartkick (~> 1.2.4)
+  chartkick
   coffee-rails (= 4.2.2)
   faker (= 1.7.3)
   guard (= 2.13.0)
@@ -232,4 +232,4 @@ DEPENDENCIES
   web-console (= 3.5.1)
 
 BUNDLED WITH
-   1.14.6
+   1.17.3
